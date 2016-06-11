@@ -34,8 +34,15 @@ module.exports = function (shipit) {
 	});
 
 	shipit.task('stop', function () {
-		return shipit.remote('cd ../tmp/demo/current; forever stop index.js	');;
+		return shipit.remote('cd ../tmp/demo/current; forever stopall');;
 	});
+
+	shipit.on('deployed',function(){
+		var command = 'cd ../tmp/demo/current;'
+		+"forever stopall;"
+		+" forever start index.js;"
+		return shipit.remote(command);
+	})
 
 
 	//bootstrap tasks
