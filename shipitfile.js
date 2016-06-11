@@ -20,4 +20,20 @@ module.exports = function (shipit) {
 	shipit.task('pwd', function () {
 		return shipit.remote('pwd');
 	});
+
+	shipit.task('install', function () {
+		return shipit.remote('cd ../tmp/demo/current && npm install	');;
+	});
+
+	shipit.task('start', function () {
+		return shipit.remote('cd ../tmp/demo/current && forever start index.js	');;
+	});
+
+	shipit.task('list', function () {
+		return shipit.remote('cd ../tmp/demo/current && forever list index.js	');;
+	});
+
+	shipit.task('stop', function () {
+		return shipit.remote('cd ../tmp/demo/current && forever stop index.js	');;
+	});
 };
