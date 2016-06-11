@@ -22,18 +22,27 @@ module.exports = function (shipit) {
 	});
 
 	shipit.task('install', function () {
-		return shipit.remote('cd ../tmp/demo/current && npm install	');;
+		return shipit.remote('cd ../tmp/demo/current; npm install	');;
 	});
 
 	shipit.task('start', function () {
-		return shipit.remote('cd ../tmp/demo/current && forever start index.js	');;
+		return shipit.remote('cd ../tmp/demo/current; forever start index.js	');;
 	});
 
 	shipit.task('list', function () {
-		return shipit.remote('cd ../tmp/demo/current && forever list index.js	');;
+		return shipit.remote('cd ../tmp/demo/current; forever list');;
 	});
 
 	shipit.task('stop', function () {
-		return shipit.remote('cd ../tmp/demo/current && forever stop index.js	');;
+		return shipit.remote('cd ../tmp/demo/current; forever stop index.js	');;
 	});
+
+
+	//bootstrap tasks
+
+	//install forever
+	shipit.task('forever', function () {
+		return shipit.remote('cd ../tmp/demo/current && npm install -g forever');
+	});
+
 };
