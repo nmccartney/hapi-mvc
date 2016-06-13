@@ -8,7 +8,7 @@ module.exports = function (shipit) {
 		default: {
 			workspace: '/tmp/demo',
 			deployTo: '/tmp/demo',
-			repositoryUrl: 'https://github.com/nmccartney/ship-hapi',
+			repositoryUrl: 'https://github.com/nmccartney/hapi-mvc',
 			ignores: ['.git', 'node_modules'],
 			rsync: ['--del'],
 			keepReleases: 2,
