@@ -1,5 +1,8 @@
 module.exports = function (shipit) {
+
 	require('shipit-deploy')(shipit);
+
+	var utils = require('shipit-utils');
 
 	shipit.initConfig({
 		default: {
@@ -26,7 +29,7 @@ module.exports = function (shipit) {
 	});
 
 	shipit.task('start', function () {
-		return shipit.remote('cd ../tmp/demo/current; forever start index.js	');;
+		return shipit.remote('cd ../tmp/demo/current; forever start index.js; forever -o out.log -e err.log index.js;');;
 	});
 
 	shipit.task('list', function () {
@@ -37,11 +40,20 @@ module.exports = function (shipit) {
 		return shipit.remote('cd ../tmp/demo/current; forever stopall');;
 	});
 
-	shipit.on('deployed',function(){
+	shipit.task('restart',function(){
+		shipit.log(require('chalk').green('Restarting server...') )
 		var command = 'cd ../tmp/demo/current;'
 		+"forever stopall;"
 		+" forever start index.js;"
-		return shipit.remote(command);
+		return shipit.remote(command)
+			.then(function(){
+				shipit.log(require('chalk').green('Sever has restarted...') )
+				shipit.emit('restarted');
+			});
+	})
+
+	shipit.on('deployed',function(){
+		utils.runTask('restart');
 	})
 
 
