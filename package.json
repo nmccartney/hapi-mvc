@@ -24,6 +24,7 @@
     "shortid": "^2.2.6"
   },
   "devDependencies": {
+    "blipp": "^2.3.0",
     "shipit-cli": "^1.4.1",
     "shipit-deploy": "^2.2.0"
   }
