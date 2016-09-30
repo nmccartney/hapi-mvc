@@ -63,5 +63,9 @@ module.exports = [
   {
     register: require('good'),
     options,
-  }
+  },
+  // { plugin: require('lout') },
+    require('bell') ,
+    require('hapi-auth-cookie') ,
+    require('./plugins/auth')
 ]
